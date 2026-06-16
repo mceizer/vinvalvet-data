@@ -1,0 +1,9 @@
+QR-kod
+    ↓
+URL
+    ↓
+Producent-ID
+    ↓
+Vinvalvet-databas
+    ↓
+Produkt
