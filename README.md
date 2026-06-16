@@ -1,39 +1,21 @@
-# Systembolaget Data
+# Vinvalvet Databas
 [![Github](https://img.shields.io/github/last-commit/C4illin/systembolaget-data?logoColor=white&style=for-the-badge&label=Updated)](https://github.com/C4illin/systembolaget-data/commits/main)
 [![Github](https://img.shields.io/github/stars/C4illin/systembolaget-data?logo=github&logoColor=white&style=for-the-badge)](https://github.com/C4illin/systembolaget-data/stargazers/)
 [![Github](https://img.shields.io/website?down_color=red&down_message=offline&style=for-the-badge&up_color=limegreen&up_message=online&url=https%3A%2F%2Falkolist.github.io%2F)](https://alkolist.github.io/)
 [![Systembolaget](https://img.shields.io/badge/AGES-20+-blue?style=for-the-badge)](https://www.systembolaget.se/under-20/)
 
-Systembolaget removed their official api for products, this is a workaround. It includes all data available as well as some historic data fetched from old excel documents.
+# Vinvalvet Databas
 
-Example usage:
-* https://github.com/alkolist/alkolist.github.io
-* https://github.com/C4illin/Alkoinfo
+Detta repository används som Vinvalvets egen databasgrund för vin- och produktdata.
 
-## Paths:
+Syftet är att skapa en kontrollerad, lokal kopia av produktdata som Vinvalvet kan använda för:
+- sökning
+- OCR-matchning
+- QR-flöden
+- framtida AI-stöd
+- minskat beroende av externa tjänster
 
-`/v1/products` includes ALL products and some information about them.
+Projektet är i ett tidigt skede och bygger initialt på en fork av C4illin/systembolaget-data.
+Målet är att successivt anpassa datamodell, importflöde och API efter Vinvalvets behov.
 
-https://susbolaget.emrik.org/v1/products (≈73 MB)
-
-(the data at my instance is updated every day at 03, swedish time)
-
-## Install:
-
-```yml
-# docker-compose.yml
-
-services:
-  systembolaget-data:
-    image: ghcr.io/c4illin/systembolaget-data:main
-    container_name: systembolaget-data
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Stockholm
-    ports:
-      - 3000:3000
-    volumes:
-      - ./data:/usr/src/app/data
 ```
-
-Download products.json from above and place in `./data`, or download excel from systembolaget.se and import manually.
