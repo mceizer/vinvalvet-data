@@ -1,18 +1,97 @@
+# Vinvalvet Data
 
-[![Systembolaget](https://img.shields.io/badge/AGES-20+-blue?style=for-the-badge)](https://www.systembolaget.se/under-20/)
+Dataplattformen för **Vinvalvet**.
 
-# Vinvalvet Databas
+Detta repository innehåller datageneratorn, importflödet och
+dokumentationen som används för att bygga och underhålla Vinvalvets egna
+vinindex.
 
-Detta repository används som Vinvalvets egen databasgrund för vin- och produktdata.
+Projektet bygger ursprungligen på en fork av C4illins
+*systembolaget-data*, men utvecklas successivt mot en fristående lösning
+anpassad för Vinvalvets behov.
 
-Syftet är att skapa en kontrollerad, lokal kopia av produktdata som Vinvalvet kan använda för:
-- sökning
-- OCR-matchning
-- QR-flöden
-- framtida AI-stöd
-- minskat beroende av externa tjänster
+------------------------------------------------------------------------
 
-Projektet är i ett tidigt skede och bygger initialt på en fork av C4illin/systembolaget-data.
-Målet är att successivt anpassa datamodell, importflöde och API efter Vinvalvets behov.
+# Syfte
 
+Målet är att skapa ett komplett, versionshanterat och lokalt optimerat
+vinindex som används av Vinvalvet.
+
+Dataplattformen ansvarar för att: - hämta produktdata - filtrera bort
+produkter som inte ska ingå - validera datakvalitet - berika
+information - generera Vinvalvets vinindex - publicera nya versioner
+
+Flutter-appen ska endast konsumera det färdiga vinindexet.
+
+------------------------------------------------------------------------
+
+# Arkitektur
+
+``` text
+Systembolaget / Datakällor
+            │
+            ▼
+    Vinvalvet Data Generator
+            │
+            ├── Import
+            ├── Filtrering
+            ├── Validering
+            ├── Databerikning
+            │
+            ▼
+wine-index.json
+wine-index-meta.json
+            │
+            ▼
+GitHub
+            │
+            ▼
+Vinvalvet App
+            │
+            ▼
+Lokal Isar-databas
 ```
+
+------------------------------------------------------------------------
+
+# Dokumentation
+
+Se katalogen `/docs`.
+
+-   Database Schema
+-   Data Sources
+-   Filter Rules
+-   Import Strategy
+-   Index Versioning
+-   QR Strategy
+
+------------------------------------------------------------------------
+
+# Projektmål
+
+-   Egen kontrollerad datakälla
+-   Snabb lokal sökning
+-   OCR-matchning
+-   QR-matchning
+-   Offline-stöd
+-   Minimal driftkostnad
+-   Framtida AI-stöd
+
+------------------------------------------------------------------------
+
+# Roadmap
+
+## Fas 3
+
+-   Bygga filtermotor
+-   Databerikning
+-   Metadata-generator
+-   Automatisk versionshantering
+-   Distribution av vinindex
+
+------------------------------------------------------------------------
+
+# Licens
+
+Projektet är en del av Vinvalvet och utvecklas för att stödja Vinvalvets
+egna dataplattform.
