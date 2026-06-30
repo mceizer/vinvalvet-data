@@ -53,7 +53,9 @@ const run = async () => {
 		throw new Error(`Filtermotorn avslutades med kod ${result.status}`);
 	}
 
-	console.log("Vinvalvet: klart. Skapade output/wine-index.json, output/wine-index-meta.json och logs/filter-report.json.");
+	console.log(
+		"Vinvalvet: klart. Skapade output/wine-index.json, output/wine-index-meta.json och logs/filter-report.json.",
+	);
 };
 
 run().catch((error) => {
