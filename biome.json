@@ -1,18 +1,30 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
+
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab",
+		"lineWidth": 120,
 		"lineEnding": "lf"
 	},
+
+	"linter": {
+		"enabled": true
+	},
+
 	"files": {
 		"includes": [
 			"**",
-			"!node_modules/**",
+
+			"!node_modules",
+			"!output",
+			"!logs",
+
 			"!data/products.json",
 			"!data/updated.json",
-			"!output/**",
-			"!logs/**"
+			"!output/wine-index.json",
+			"!output/wine-index-meta.json",
+			"!logs/filter-report.json"
 		]
 	}
 }

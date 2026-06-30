@@ -110,13 +110,9 @@ const processItem = (item) => {
 				processItem(item + 1);
 			});
 	} else {
-		fs.writeFile(
-			"../data/products.json",
-			JSON.stringify(products, null, 2),
-			(err) => {
-				if (err) throw err;
-				console.log("Saved new products.json!");
-			},
-		);
+		fs.writeFile("../data/products.json", JSON.stringify(products, null, 2), (err) => {
+			if (err) throw err;
+			console.log("Saved new products.json!");
+		});
 	}
 };

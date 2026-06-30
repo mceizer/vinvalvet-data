@@ -2,8 +2,7 @@ import fs from "node:fs";
 import fetch from "node-fetch";
 
 export const getAllProducts = async (productIdMap) => {
-	const starturl =
-		"https://api-extern.systembolaget.se/sb-api-ecommerce/v1/productsearch/search?size=30";
+	const starturl = "https://api-extern.systembolaget.se/sb-api-ecommerce/v1/productsearch/search?size=30";
 	let products = [];
 
 	let updatedProducts = [];
@@ -17,9 +16,7 @@ export const getAllProducts = async (productIdMap) => {
 		}
 	});
 
-	const changedDate = new Date(Date.now() - 1000 * 3600 * 10)
-		.setHours(0, 0, 0, 0)
-		.valueOf(); // Yesterday if less than 10 hours ago
+	const changedDate = new Date(Date.now() - 1000 * 3600 * 10).setHours(0, 0, 0, 0).valueOf(); // Yesterday if less than 10 hours ago
 
 	const options = {
 		method: "GET",
@@ -78,15 +75,11 @@ export const getAllProducts = async (productIdMap) => {
 		}
 		foundIDs.push(product.productNumber);
 
-		if (
-			product.productNumber in productIdMap &&
-			productIdMap[product.productNumber].changedDate
-		) {
+		if (product.productNumber in productIdMap && productIdMap[product.productNumber].changedDate) {
 			// add old data
 			product.changedDate = productIdMap[product.productNumber].changedDate;
 			product.priceHistory = productIdMap[product.productNumber].priceHistory;
-			product.alcoholHistory =
-				productIdMap[product.productNumber].alcoholHistory;
+			product.alcoholHistory = productIdMap[product.productNumber].alcoholHistory;
 			product.soldVolume = productIdMap[product.productNumber].soldVolume;
 
 			// add new data
@@ -96,14 +89,9 @@ export const getAllProducts = async (productIdMap) => {
 			if (product.price !== productIdMap[product.productNumber].price) {
 				product.priceHistory.push({ x: changedDate, y: product.price });
 				updated = true;
-				reason = `Priset ändrades från ${
-					productIdMap[product.productNumber].price
-				} till ${product.price} kr.`;
+				reason = `Priset ändrades från ${productIdMap[product.productNumber].price} till ${product.price} kr.`;
 			}
-			if (
-				product.alcoholPercentage !==
-				productIdMap[product.productNumber].alcoholPercentage
-			) {
+			if (product.alcoholPercentage !== productIdMap[product.productNumber].alcoholPercentage) {
 				product.alcoholHistory.push({
 					x: changedDate,
 					y: product.alcoholPercentage || 0,
@@ -120,9 +108,7 @@ export const getAllProducts = async (productIdMap) => {
 		} else {
 			product.changedDate = changedDate;
 			product.priceHistory = [{ x: changedDate, y: product.price }];
-			product.alcoholHistory = [
-				{ x: changedDate, y: product.alcoholPercentage || 0 },
-			];
+			product.alcoholHistory = [{ x: changedDate, y: product.alcoholPercentage || 0 }];
 			updatedProducts.push({
 				id: product.productNumber,
 				date: changedDate,
@@ -135,10 +121,7 @@ export const getAllProducts = async (productIdMap) => {
 	for (const id of Object.keys(productIdMap)) {
 		if (!foundIDs.includes(id)) {
 			if (productIdMap[id].lastFound) {
-				if (
-					productIdMap[id].lastFound + 1000 * 60 * 60 * 24 * 7 <
-					changedDate
-				) {
+				if (productIdMap[id].lastFound + 1000 * 60 * 60 * 24 * 7 < changedDate) {
 					// Product not found for a week, remove it
 					console.log(`Product removed: ${id}`);
 					delCount++;
@@ -152,21 +135,15 @@ export const getAllProducts = async (productIdMap) => {
 		}
 	}
 	console.log(`Found: ${newProductNum} products`);
-	console.log(
-		`Delta: ${foundIDs.length - Object.keys(productIdMap).length} products`,
-	);
+	console.log(`Delta: ${foundIDs.length - Object.keys(productIdMap).length} products`);
 	console.log(`Duplicates: ${dupCount} products`);
 	console.log(`Deleted: ${delCount} products`);
 
-	fs.writeFile(
-		"data/products.json",
-		JSON.stringify(products, null, 2),
-		(err) => {
-			if (err) {
-				throw err;
-			}
-		},
-	);
+	fs.writeFile("data/products.json", JSON.stringify(products, null, 2), (err) => {
+		if (err) {
+			throw err;
+		}
+	});
 	console.log(`Wrote: ${products.length} products`);
 
 	// Filter products updated more than 7 days ago
@@ -174,14 +151,10 @@ export const getAllProducts = async (productIdMap) => {
 		return product.date + 1000 * 60 * 60 * 24 * 7 > changedDate;
 	});
 
-	fs.writeFile(
-		"data/updated.json",
-		JSON.stringify(updatedProducts, null, 2),
-		(err) => {
-			if (err) {
-				throw err;
-			}
-		},
-	);
+	fs.writeFile("data/updated.json", JSON.stringify(updatedProducts, null, 2), (err) => {
+		if (err) {
+			throw err;
+		}
+	});
 	return products;
 };

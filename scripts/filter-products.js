@@ -83,8 +83,7 @@ const normalizeWineType = (product) => {
 	if (customCategoryTitle.startsWith("Alkoholfritt, Rött")) return "red";
 	if (customCategoryTitle.startsWith("Alkoholfritt, Vitt")) return "white";
 	if (customCategoryTitle.startsWith("Alkoholfritt, Rosé")) return "rose";
-	if (customCategoryTitle.startsWith("Alkoholfritt Mousserande"))
-		return "sparkling";
+	if (customCategoryTitle.startsWith("Alkoholfritt Mousserande")) return "sparkling";
 
 	switch (categoryLevel2) {
 		case "Rött vin":
@@ -175,27 +174,12 @@ const addAlcoholFreeTokens = (tokens, product) => {
 
 	if (!isAlcoholFree) return;
 
-	for (const token of [
-		"alkoholfritt",
-		"alkoholfri",
-		"alcohol free",
-		"non alcoholic",
-		"alcoholfree",
-	]) {
+	for (const token of ["alkoholfritt", "alkoholfri", "alcohol free", "non alcoholic", "alcoholfree"]) {
 		addToken(tokens, token);
 	}
 };
 
-const buildSearchTokens = ({
-	name,
-	producer,
-	country,
-	region,
-	subRegion,
-	grapes,
-	product,
-	wineType,
-}) => {
+const buildSearchTokens = ({ name, producer, country, region, subRegion, grapes, product, wineType }) => {
 	const tokens = new Set();
 
 	for (const value of [
@@ -243,9 +227,7 @@ const shouldIncludeProduct = (product) => {
 	}
 
 	if (categoryLevel1 === "Alkoholfritt") {
-		const allowedAlcoholFree = ALLOWED_ALCOHOL_FREE_TITLES.some((title) =>
-			customCategoryTitle.startsWith(title),
-		);
+		const allowedAlcoholFree = ALLOWED_ALCOHOL_FREE_TITLES.some((title) => customCategoryTitle.startsWith(title));
 
 		if (allowedAlcoholFree) {
 			return {
@@ -287,9 +269,7 @@ const mapToWineIndexProduct = (product) => {
 	const region = normalizeText(product.originLevel1) || null;
 	const subRegion = normalizeText(product.originLevel2) || null;
 	const wineType = normalizeWineType(product);
-	const grapes = Array.isArray(product.grapes)
-		? product.grapes.map(normalizeText).filter(Boolean)
-		: [];
+	const grapes = Array.isArray(product.grapes) ? product.grapes.map(normalizeText).filter(Boolean) : [];
 
 	const searchTokens = buildSearchTokens({
 		name,
@@ -372,10 +352,7 @@ const main = () => {
 		const decision = shouldIncludeProduct(product);
 
 		if (!decision.include) {
-			excludedReasons.set(
-				decision.reason,
-				(excludedReasons.get(decision.reason) ?? 0) + 1,
-			);
+			excludedReasons.set(decision.reason, (excludedReasons.get(decision.reason) ?? 0) + 1);
 			continue;
 		}
 
@@ -423,9 +400,7 @@ const main = () => {
 		includedProducts: included.length,
 		excludedProducts: products.length - included.length,
 		validationWarnings: validationWarnings.length,
-		excludedReasons: Object.fromEntries(
-			[...excludedReasons.entries()].sort((a, b) => b[1] - a[1]),
-		),
+		excludedReasons: Object.fromEntries([...excludedReasons.entries()].sort((a, b) => b[1] - a[1])),
 		warnings: validationWarnings,
 	};
 
