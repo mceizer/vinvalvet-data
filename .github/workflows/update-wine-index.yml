@@ -54,6 +54,13 @@ jobs:
           fi
 
           echo "Vinvalvet: ändringar hittades, committar och pushar till main."
-          git add -A
+          # Vinvalvet: filerna nedan är gitignore:ade (data/, output/, logs/),
+          # så de måste force-add:as med -f för att komma med i commit:en.
+          git add -f \
+            data/products.json \
+            data/updated.json \
+            output/wine-index.json \
+            output/wine-index-meta.json \
+            logs/filter-report.json
           git commit -m "Update generated wine index"
           git push
