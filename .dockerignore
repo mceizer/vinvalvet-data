@@ -1,4 +1,26 @@
-node_modules
-old
+# ============================================
+# Vinvalvet Data
+# Docker ignore-regler
+# ============================================
+
+.git
 .github
+node_modules
+excel/node_modules
+npm-debug.log
+Dockerfile
 docker-compose.yml
+
+# Lokalt/genererat
+logs
+output
+dist
+coverage
+
+# Lokala miljöfiler
+.env
+.env.*
+
+# OS/editor
+.DS_Store
+Thumbs.db

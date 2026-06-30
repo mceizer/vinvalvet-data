@@ -1,9 +1,45 @@
-test*
+# ============================================
+# Vinvalvet Data
+# Git ignore-regler
+# ============================================
+
+# Dependencies
 node_modules/
-/dist
-/data/products.json
+excel/node_modules/
+
+# Build / distribution
+dist/
+build/
+coverage/
+
+# Lokala miljöfiler
+.env
+.env.*
+!.env.example
+
+# Systemfiler
+.DS_Store
+Thumbs.db
+
+# Loggar
+*.log
+logs/*
+!logs/.gitkeep
+
+# Genererade filer från filtermotorn
+output/*
+!output/.gitkeep
+
+# Stora rådatafiler / snapshots
+data/products.json
+data/updated.json
+data/backup.json
+
+# Excel-importer
 *.xls
 *.xlsx
-/data/updated.json
-/data/backup.json
-/libs
+
+# Tillfälliga testfiler
+test*
+tmp/
+temp/

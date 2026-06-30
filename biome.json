@@ -17,14 +17,13 @@
 			"**",
 
 			"!node_modules",
+			"!excel/node_modules",
 			"!output",
 			"!logs",
 
 			"!data/products.json",
 			"!data/updated.json",
-			"!output/wine-index.json",
-			"!output/wine-index-meta.json",
-			"!logs/filter-report.json"
+			"!data/backup.json"
 		]
 	}
 }
