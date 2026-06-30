@@ -1,8 +1,8 @@
 {
-  "version": "2026.06.16.sample",
-  "generatedAt": "2026-06-16T20:00:00Z",
-  "wineCount": 3,
-  "format": "json",
-  "fileName": "wine-index.sample.json",
-  "downloadUrl": "https://raw.githubusercontent.com/mceizer/vinvalvet/main/data/wine-index.sample.json"
+	"version": "2026.06.16.sample",
+	"generatedAt": "2026-06-16T20:00:00Z",
+	"wineCount": 3,
+	"format": "json",
+	"fileName": "wine-index.sample.json",
+	"downloadUrl": "https://raw.githubusercontent.com/mceizer/vinvalvet/main/data/wine-index.sample.json"
 }

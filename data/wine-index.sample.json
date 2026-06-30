@@ -1,82 +1,76 @@
 {
-  "version": "2026.06.16.sample",
-  "generatedAt": "2026-06-16T20:00:00Z",
-  "wineCount": 3,
-  "wines": [
-    {
-      "id": "vinvalvet_sample_000001",
-      "productId": "sample-000001",
-      "name": "Naltros Cava Brut",
-      "producer": "Naltros",
-      "country": "Spain",
-      "region": "Cava",
-      "wineType": "sparkling",
-      "vintage": null,
-      "grapes": ["Macabeo", "Xarel-lo", "Parellada"],
-      "aliases": ["Naltros Cava", "Naltros Brut"],
-      "searchTokens": [
-        "naltros",
-        "cava",
-        "brut",
-        "spain",
-        "sparkling",
-        "macabeo",
-        "xarel-lo",
-        "parellada"
-      ],
-      "qrUrls": [],
-      "source": "sample",
-      "sourceUrl": null,
-      "updatedAt": "2026-06-16T20:00:00Z"
-    },
-    {
-      "id": "vinvalvet_sample_000002",
-      "productId": "sample-000002",
-      "name": "Ruinart Blanc de Blancs",
-      "producer": "Ruinart",
-      "country": "France",
-      "region": "Champagne",
-      "wineType": "sparkling",
-      "vintage": null,
-      "grapes": ["Chardonnay"],
-      "aliases": ["Ruinart", "Ruinart Blanc"],
-      "searchTokens": [
-        "ruinart",
-        "blanc",
-        "de",
-        "blancs",
-        "france",
-        "champagne",
-        "sparkling",
-        "chardonnay"
-      ],
-      "qrUrls": [],
-      "source": "sample",
-      "sourceUrl": null,
-      "updatedAt": "2026-06-16T20:00:00Z"
-    },
-    {
-      "id": "vinvalvet_sample_000003",
-      "productId": "sample-000003",
-      "name": "Grande Alberone Rosso",
-      "producer": "Grande Alberone",
-      "country": "Italy",
-      "region": null,
-      "wineType": "red",
-      "vintage": null,
-      "grapes": [],
-      "aliases": ["Alberone", "Grande Alberone"],
-      "searchTokens": [
-        "grande",
-        "alberone",
-        "rosso",
-        "italy",
-        "red"
-      ],
-      "qrUrls": [],
-      "source": "sample",
-      "sourceUrl": null,
-      "updatedAt": "2026-06-16T20:00:00Z"
-    }
-  ]
+	"version": "2026.06.16.sample",
+	"generatedAt": "2026-06-16T20:00:00Z",
+	"wineCount": 3,
+	"wines": [
+		{
+			"id": "vinvalvet_sample_000001",
+			"productId": "sample-000001",
+			"name": "Naltros Cava Brut",
+			"producer": "Naltros",
+			"country": "Spain",
+			"region": "Cava",
+			"wineType": "sparkling",
+			"vintage": null,
+			"grapes": ["Macabeo", "Xarel-lo", "Parellada"],
+			"aliases": ["Naltros Cava", "Naltros Brut"],
+			"searchTokens": [
+				"naltros",
+				"cava",
+				"brut",
+				"spain",
+				"sparkling",
+				"macabeo",
+				"xarel-lo",
+				"parellada"
+			],
+			"qrUrls": [],
+			"source": "sample",
+			"sourceUrl": null,
+			"updatedAt": "2026-06-16T20:00:00Z"
+		},
+		{
+			"id": "vinvalvet_sample_000002",
+			"productId": "sample-000002",
+			"name": "Ruinart Blanc de Blancs",
+			"producer": "Ruinart",
+			"country": "France",
+			"region": "Champagne",
+			"wineType": "sparkling",
+			"vintage": null,
+			"grapes": ["Chardonnay"],
+			"aliases": ["Ruinart", "Ruinart Blanc"],
+			"searchTokens": [
+				"ruinart",
+				"blanc",
+				"de",
+				"blancs",
+				"france",
+				"champagne",
+				"sparkling",
+				"chardonnay"
+			],
+			"qrUrls": [],
+			"source": "sample",
+			"sourceUrl": null,
+			"updatedAt": "2026-06-16T20:00:00Z"
+		},
+		{
+			"id": "vinvalvet_sample_000003",
+			"productId": "sample-000003",
+			"name": "Grande Alberone Rosso",
+			"producer": "Grande Alberone",
+			"country": "Italy",
+			"region": null,
+			"wineType": "red",
+			"vintage": null,
+			"grapes": [],
+			"aliases": ["Alberone", "Grande Alberone"],
+			"searchTokens": ["grande", "alberone", "rosso", "italy", "red"],
+			"qrUrls": [],
+			"source": "sample",
+			"sourceUrl": null,
+			"updatedAt": "2026-06-16T20:00:00Z"
+		}
+	]
 }
