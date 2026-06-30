@@ -27,10 +27,7 @@ const ALLOWED_ALCOHOL_FREE_TITLES = [
 	"Alkoholfritt Mousserande övrigt",
 ];
 
-const EXCLUDED_CATEGORY_LEVEL_2 = new Set([
-	"Glögg och Glühwein",
-	"Sake",
-]);
+const EXCLUDED_CATEGORY_LEVEL_2 = new Set(["Glögg och Glühwein", "Sake"]);
 
 const normalizeText = (value) => {
 	if (value === null || value === undefined) return "";
@@ -86,7 +83,8 @@ const normalizeWineType = (product) => {
 	if (customCategoryTitle.startsWith("Alkoholfritt, Rött")) return "red";
 	if (customCategoryTitle.startsWith("Alkoholfritt, Vitt")) return "white";
 	if (customCategoryTitle.startsWith("Alkoholfritt, Rosé")) return "rose";
-	if (customCategoryTitle.startsWith("Alkoholfritt Mousserande")) return "sparkling";
+	if (customCategoryTitle.startsWith("Alkoholfritt Mousserande"))
+		return "sparkling";
 
 	switch (categoryLevel2) {
 		case "Rött vin":
