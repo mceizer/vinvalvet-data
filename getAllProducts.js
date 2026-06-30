@@ -1,4 +1,8 @@
 import fs from "node:fs";
+// Vinvalvet: await-bar filskrivning så att data/products.json och data/updated.json
+// är färdigskrivna innan getAllProducts returnerar (annars läser filtermotorn en
+// halvskriven JSON-fil när npm run update kör kedjan).
+import { writeFile } from "node:fs/promises";
 import fetch from "node-fetch";
 
 export const getAllProducts = async (productIdMap) => {
@@ -139,11 +143,8 @@ export const getAllProducts = async (productIdMap) => {
 	console.log(`Duplicates: ${dupCount} products`);
 	console.log(`Deleted: ${delCount} products`);
 
-	fs.writeFile("data/products.json", JSON.stringify(products, null, 2), (err) => {
-		if (err) {
-			throw err;
-		}
-	});
+	// Vinvalvet: invänta skrivningen innan vi går vidare.
+	await writeFile("data/products.json", JSON.stringify(products, null, 2));
 	console.log(`Wrote: ${products.length} products`);
 
 	// Filter products updated more than 7 days ago
@@ -151,10 +152,7 @@ export const getAllProducts = async (productIdMap) => {
 		return product.date + 1000 * 60 * 60 * 24 * 7 > changedDate;
 	});
 
-	fs.writeFile("data/updated.json", JSON.stringify(updatedProducts, null, 2), (err) => {
-		if (err) {
-			throw err;
-		}
-	});
+	// Vinvalvet: invänta skrivningen innan return så att filen är komplett.
+	await writeFile("data/updated.json", JSON.stringify(updatedProducts, null, 2));
 	return products;
 };

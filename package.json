@@ -6,7 +6,8 @@
 		"check": "biome check && biome lint",
 		"format": "biome format --write && biome lint --write",
 		"filter": "node scripts/filter-products.js",
-		"data:filter": "node scripts/filter-products.js"
+		"data:filter": "node scripts/filter-products.js",
+		"update": "node scripts/update-products.js"
 	},
 	"author": "",
 	"license": "ISC",

@@ -19,18 +19,29 @@ const idMap = (products) => {
 	console.log("IdMap created");
 };
 
+const fetchAllProducts = () => {
+	console.log("Fetching all products at startup, this takes a while...");
+	getAllProducts(productIdMap)
+		.then((products) => {
+			idMap(products);
+			console.log(`New products.json fetched and overwritten with ${products.length} products`);
+		})
+		.catch((error) => {
+			console.error("Error while fetching products: ", error);
+		});
+};
+
+// Always fetch fresh products at startup. Preload any existing products.json
+// into productIdMap first so price/alcohol history is preserved across restarts.
 readFile("data/products.json", function read(err, data) {
 	if (!err && data) {
-		console.log("Products.json found, no need to fetch");
 		idMap(JSON.parse(data));
 	} else if (err.code === "ENOENT") {
-		console.log("Products.json not found, this takes a while...");
-		getAllProducts(productIdMap).then((products) => {
-			idMap(products);
-		});
+		console.log("Products.json not found.");
 	} else {
 		console.log("Error with products.json: ", err.code);
 	}
+	fetchAllProducts();
 });
 
 const app = express();
