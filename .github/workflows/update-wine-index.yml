@@ -1,0 +1,59 @@
+# Vinvalvet: manuell uppdatering av vinindexet.
+#
+# Den här workflowen kör hela datakedjan (npm run update) på GitHub:
+#   1. Hämtar ny products.json från Systembolaget.
+#   2. Skriver över data/products.json.
+#   3. Kör filtermotorn som skapar output/wine-index.json,
+#      output/wine-index-meta.json och logs/filter-report.json.
+# Om något i repot ändrats committas och pushas resultatet tillbaka till main.
+#
+# Första versionen: körs ENDAST manuellt (workflow_dispatch).
+# Ingen schemaläggning/cron och inga secrets ännu.
+
+name: Update Wine Index
+
+# Endast manuell körning i detta första steg.
+on:
+  workflow_dispatch:
+
+# Behövs för att kunna pusha tillbaka commit:en till repot.
+permissions:
+  contents: write
+
+jobs:
+  update:
+    name: Update generated wine index
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js (senaste LTS)
+        uses: actions/setup-node@v6
+        with:
+          node-version: "lts/*"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run update chain (Vinvalvet)
+        run: npm run update
+
+      - name: Commit and push if changed
+        run: |
+          # Vinvalvet: konfigurera git-identitet för den automatiska commit:en.
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Kontrollera om något i repot har ändrats av update-kedjan.
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Vinvalvet: inga ändringar att committa, avslutar utan commit."
+            exit 0
+          fi
+
+          echo "Vinvalvet: ändringar hittades, committar och pushar till main."
+          git add -A
+          git commit -m "Update generated wine index"
+          git push
