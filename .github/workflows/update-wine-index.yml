@@ -51,8 +51,6 @@ jobs:
           # och därmed otrackade, så git status ser dem inte. Stage:a dem
           # FÖRST med -f, och kontrollera därefter om något faktiskt ändrats.
           git add -f \
-            data/products.json \
-            data/updated.json \
             output/wine-index.json \
             output/wine-index-meta.json \
             logs/filter-report.json
