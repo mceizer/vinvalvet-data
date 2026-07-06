@@ -47,20 +47,22 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Kontrollera om något i repot har ändrats av update-kedjan.
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "Vinvalvet: inga ändringar att committa, avslutar utan commit."
-            exit 0
-          fi
-
-          echo "Vinvalvet: ändringar hittades, committar och pushar till main."
-          # Vinvalvet: filerna nedan är gitignore:ade (data/, output/, logs/),
-          # så de måste force-add:as med -f för att komma med i commit:en.
+          # Vinvalvet: filerna nedan är gitignore:ade (data/, output/, logs/)
+          # och därmed otrackade, så git status ser dem inte. Stage:a dem
+          # FÖRST med -f, och kontrollera därefter om något faktiskt ändrats.
           git add -f \
             data/products.json \
             data/updated.json \
             output/wine-index.json \
             output/wine-index-meta.json \
             logs/filter-report.json
+
+          # Kontrollera staged diff efter add.
+          if git diff --cached --quiet; then
+            echo "Vinvalvet: inga ändringar att committa, avslutar utan commit."
+            exit 0
+          fi
+
+          echo "Vinvalvet: ändringar hittades, committar och pushar till main."
           git commit -m "Update generated wine index"
           git push
