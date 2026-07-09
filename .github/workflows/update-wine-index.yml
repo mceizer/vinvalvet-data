@@ -12,9 +12,19 @@
 
 name: Update Wine Index
 
-# Endast manuell körning i detta första steg.
+# Manuell körning + automatisk nattlig uppdatering.
 on:
   workflow_dispatch:
+  schedule:
+    # Vinvalvet: nattlig körning en gång per dygn.
+    # Cron anges i UTC: 02:15 UTC = 03:15 svensk vintertid (CET).
+    # Under sommartid (CEST) blir det 04:15 svensk tid — "ungefär 03:15".
+    - cron: "15 2 * * *"
+
+# Undvik parallella körningar (t.ex. manuell start samtidigt som cron).
+concurrency:
+  group: update-wine-index
+  cancel-in-progress: false
 
 # Behövs för att kunna pusha tillbaka commit:en till repot.
 permissions:
