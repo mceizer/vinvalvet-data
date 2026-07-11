@@ -1,8 +1,8 @@
 {
-  "version": "2026.07.10",
-  "startedAt": "2026-07-10T23:52:34.766Z",
-  "finishedAt": "2026-07-10T23:52:35.636Z",
-  "durationMs": 870,
+  "version": "2026.07.11",
+  "startedAt": "2026-07-11T01:13:01.582Z",
+  "finishedAt": "2026-07-11T01:13:02.424Z",
+  "durationMs": 842,
   "inputFile": "data/products.json",
   "totalProducts": 26953,
   "includedProducts": 15156,
