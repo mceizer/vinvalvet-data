@@ -19,7 +19,7 @@ on:
     # Vinvalvet: nattlig körning en gång per dygn.
     # Cron anges i UTC: 02:15 UTC = 03:15 svensk vintertid (CET).
     # Under sommartid (CEST) blir det 04:15 svensk tid — "ungefär 03:15".
-    - cron: "53 * * * *"
+    - cron: "15 2 * * *"
 
 # Undvik parallella körningar (t.ex. manuell start samtidigt som cron).
 concurrency:
