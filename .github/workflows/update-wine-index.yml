@@ -102,8 +102,11 @@ jobs:
           put output/wine-index.json -o wine-index.json.tmp
           put output/wine-index-meta.json -o wine-index-meta.json.tmp
 
-          mv -f wine-index.json.tmp wine-index.json
-          mv -f wine-index-meta.json.tmp wine-index-meta.json
+          rm -f wine-index.json
+          mv wine-index.json.tmp wine-index.json
+
+          rm -f wine-index-meta.json
+          mv wine-index-meta.json.tmp wine-index-meta.json
 
           bye
           EOF
