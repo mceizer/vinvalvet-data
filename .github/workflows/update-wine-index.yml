@@ -74,3 +74,36 @@ jobs:
           echo "Vinvalvet: ändringar hittades, committar och pushar till main."
           git commit -m "Update generated wine index"
           git push
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Publish Vinvalvet-Data to data.vinvalvet.nu
+        env:
+          SFTP_HOST: ${{ secrets.ONE_SFTP_HOST }}
+          SFTP_USERNAME: ${{ secrets.ONE_SFTP_USERNAME }}
+          SFTP_PASSWORD: ${{ secrets.ONE_SFTP_PASSWORD }}
+          SFTP_PORT: ${{ secrets.ONE_SFTP_PORT }}
+          SFTP_TARGET_PATH: ${{ secrets.ONE_SFTP_TARGET_PATH }}
+        run: |
+          set -euo pipefail
+
+          test -s output/wine-index.json
+          test -s output/wine-index-meta.json
+
+          lftp -u "$SFTP_USERNAME","$SFTP_PASSWORD" \
+            -p "$SFTP_PORT" \
+            "sftp://$SFTP_HOST" <<EOF
+          set sftp:auto-confirm yes
+          set cmd:fail-exit yes
+
+          cd "$SFTP_TARGET_PATH"
+
+          put output/wine-index.json -o wine-index.json.tmp
+          put output/wine-index-meta.json -o wine-index-meta.json.tmp
+
+          mv -f wine-index.json.tmp wine-index.json
+          mv -f wine-index-meta.json.tmp wine-index-meta.json
+
+          bye
+          EOF
