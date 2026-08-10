@@ -41,7 +41,7 @@ wine-index.json
 wine-index-meta.json
             │
             ▼
-GitHub
+Egen server
             │
             ▼
 Vinvalvet App
