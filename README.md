@@ -7,7 +7,7 @@ dokumentationen som används för att bygga och underhålla Vinvalvets egna
 vinindex.
 
 Projektet bygger ursprungligen på en fork av C4illins
-*systembolaget-data*, men utvecklas successivt mot en fristående lösning
+*systembolaget-data*, men har nu utvecklats till en fristående lösning
 anpassad för Vinvalvets behov.
 
 ------------------------------------------------------------------------
@@ -20,8 +20,6 @@ vinindex som används av Vinvalvet.
 Dataplattformen ansvarar för att: - hämta produktdata - filtrera bort
 produkter som inte ska ingå - validera datakvalitet - berika
 information - generera Vinvalvets vinindex - publicera nya versioner
-
-Flutter-appen ska endast konsumera det färdiga vinindexet.
 
 ------------------------------------------------------------------------
 
@@ -75,19 +73,8 @@ Se katalogen `/docs`.
 -   QR-matchning
 -   Offline-stöd
 -   Minimal driftkostnad
--   Framtida AI-stöd
 
 ------------------------------------------------------------------------
-
-# Roadmap
-
-## Fas 3
-
--   Bygga filtermotor
--   Databerikning
--   Metadata-generator
--   Automatisk versionshantering
--   Distribution av vinindex
 
 ------------------------------------------------------------------------
 
